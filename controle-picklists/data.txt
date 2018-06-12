@@ -1,0 +1,8 @@
+[
+{"id_reg": 1,"num_picklist":465567, "nome_estoque":"AERO", "data_hora":"2018-01-19T22:17:53.622Z"},
+{"id_reg": 2,"num_picklist":465789, "nome_estoque":"AERO", "data_hora":"2018-01-19T21:49:02.914Z"},
+{"id_reg": 3,"num_picklist":355876, "nome_estoque":"AERO", "data_hora":"2018-01-19T21:24:03.689Z"},
+{"id_reg": 4,"num_picklist":434571, "nome_estoque":"AERO", "data_hora":"2018-01-19T20:23:15.0380047Z"},
+{"id_reg": 5,"num_picklist":465333, "nome_estoque":"AERO", "data_hora":"2018-01-19T19:00:10.1823808Z"},
+{"id_reg": 6,"num_picklist":463899, "nome_estoque":"AERO", "data_hora":"2018-01-19T18:32:52.318Z"}
+]
