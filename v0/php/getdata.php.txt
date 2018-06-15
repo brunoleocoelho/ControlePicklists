@@ -1,0 +1,55 @@
+<?php 
+
+    //Array test simulando banco de dados
+    $arr = array(
+        array("id_reg"=> 1,"num_picklist"=> 465567, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-10T22:17:53.622"),
+        array("id_reg"=> 2,"num_picklist"=> 465789, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-19T21:49:02.914"),
+        array("id_reg"=> 3,"num_picklist"=> 355876, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-19T21:24:03.689"),
+        array("id_reg"=> 4,"num_picklist"=> 434571, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-19T20:23:15.0380047"),
+        array("id_reg"=> 5,"num_picklist"=> 465333, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-19T19:00:10.1823808"),
+        array("id_reg"=> 6,"num_picklist"=> 463899, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-19T18:32:52.318"),
+        array("id_reg"=> 7,"num_picklist"=> 463899, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-20T15:30:00.000"),
+        array("id_reg"=> 8,"num_picklist"=> 465567, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-20T02:17:40.622"),
+        array("id_reg"=> 9,"num_picklist"=> 434571, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-21T10:15:33.0007"),
+        array("id_reg"=> 10,"num_picklist"=> 463899, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-21T18:32:52.318"),
+        array("id_reg"=> 11,"num_picklist"=> 463899, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-21T19:30:52.318"),
+        array("id_reg"=> 12,"num_picklist"=> 463899, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-22T10:02:00.318"),
+        array("id_reg"=> 13,"num_picklist"=> 463899, "nome_estoque"=>"AERO", "data_hora"=>"2018-01-22T18:15:00.318")
+    );
+
+    $resultado = array();    
+
+    /** QUERY SELECIONAR REGISTROS DO BD
+     * select id_registro, nome_estoque, num_picklist, data_hora
+     * from saida_picklist, estoque
+     * where saida_picklist.id_estoque = estoque.id_estoque
+     */
+
+    //verificando atributos passados com GET
+    $pkl = isset( $_GET['pkl'] ) ? intval( $_GET['pkl'] ) : null ;
+    $dtFrom = isset( $_GET['dateFrom']) ? $_GET['dateFrom'] : null;
+    $dtTo = isset( $_GET['dateTo']) ? $_GET['dateTo'] : null;
+    // //testes
+    // var_dump($pkl);
+    // var_dump($dtFrom);
+    // var_dump($dtTo);
+
+    //filtrando num picklist
+    if ($pkl) {
+        //para cada $v(item) tendo sua $key(chave) em $arr
+        foreach ($arr as $key => $v){
+            //se $v['num_picklist'] (item) for igual a $pkl
+            if ($v['num_picklist'] == $pkl) {
+                //adicione $v em $resultado
+                array_push($resultado, $v);
+            }
+            // print_r($resultado);
+        }
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+    }else{
+        $res = $arr;
+    }
+
+
+?>

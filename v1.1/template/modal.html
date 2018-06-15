@@ -1,0 +1,25 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color:red;">
+        <h4 class="modal-title" style="color:white;" id="avisoModalLabel">ATENÇÃO!!!</h4>
+      </div>
+      <div class="modal-body">
+          <h4>Picklist {{items[0].num_picklist}} já registrado anteriormente: </h4>
+          <ul class="list-group">
+            <li class="list-group-item" ng-repeat="pkl in items">    
+              Estoque: {{ pkl.nome_estoque }} em {{ pkl.data_hora | date : 'dd-MMM-yyyy' }} às {{ pkl.data_hora | date : 'HH:mm' }}
+            </li>
+          </ul>
+        <h4>Deseja continuar?</h4>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-success" ng-click="ok()">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  SIM
+          </button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancel()">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  NÃO
+          </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->

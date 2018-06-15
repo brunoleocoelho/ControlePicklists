@@ -1,0 +1,52 @@
+create databases controle_picklists;
+
+//CRIANDO TABELAS
+create table estoque(
+	id_estoque int not null unique,
+	nome_estoque varchar(10) not null,
+	ativo tinyint(1),
+	primary key(id_estoque)
+);
+
+create table saida_picklist (
+	id_registro int not null auto_increment,
+	id_estoque int,
+	num_picklist varchar(10) not null,
+	data_hora datetime not null,
+	obs text,
+	time_registro timestamp,
+	primary key(id_registro),
+	constraint fk_estoque foreign key (id_estoque)
+	references estoque (id_estoque)
+);
+
+//INSERINDO DADOS DE TESTE
+insert into estoque values
+(1, 'AERO', 1),
+(2, 'ACS', 1),
+(3, 'CONS', 1);
+
+insert into table saida_picklist values
+(null, 1, '465567', '2018-01-10 22:17:53', null, null),
+(null, 1, '465789', '2018-01-19 21:49:02', null, null),
+(null, 1, '355876', '2018-01-19 21:24:03', null, null),
+(null, 1, '434571', '2018-01-19 20:23:15', null, null),
+(null, 1, '465333', '2018-01-19 19:00:10', null, null),
+(null, 1, '463899', '2018-01-19 18:32:52', null, null),
+(null, 1, '463899', '2018-01-20 15:30:00', null, null),
+(null, 1, '465567', '2018-01-20 02:17:40', null, null),
+(null, 1, '434571', '2018-01-21 10:15:33', null, null),
+(null, 1, '463899', '2018-01-21 18:32:52', null, null),
+(null, 1, '463899', '2018-01-22 10:02:00', null, null),
+(null, 1, '463899', '2018-01-22 18:15:00', null, null);
+
+
+
+//SELECIONAR UM REGISTRO PELO num_picklist
+select id_registro, nome_estoque, num_picklist, data_hora
+from saida_picklist, estoque
+where saida_picklist.id_estoque = estoque.id_estoque
+
+
+select id_registro, nome_estoque, num_picklist, data_hora from saida_picklist, estoque where saida_picklist.id_estoque = estoque.id_estoqueand num_picklist = '465567'and data_hora between '2018-01-01' and '2018-01-23'
+

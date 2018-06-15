@@ -1,0 +1,44 @@
+HOSTS
+10.81.93.63 		PC Carlos Junior 
+10.48.87.191:50 	PC Bruno Coelho
+10.81.93.159:50 	PC portão picklists
+
+banco de dados: MAPA
+instancia: 10.81.93.63\SQLEXPRESS
+usuario: sismapa
+senha: sis123
+
+
+TABELAS
+estoque
+>id_estoque
+>nome_estoque
+>ativo
+
+mapa (atendido)
+>id_reg
+>num_picklist
+>data_hora
+>obs
+>id_estoque (FK estoque.id_estoque)
+
+
+
+QUERIES UTEIS
+
+Exibir os ultimos 50 picklists atendidos:
+>select id_reg, num_picklist, data_hora, nome_estoque
+>from esqtoque, mapa
+>where mapa.id_estoque = estoque.id_estoque
+
+Postar picklist atendido ***VERIFICAR FORMATO DE DAT/HORA
+>insert into mapa values (
+>null, '456123', '18/01/2018 23:42:27', '', 1)
+
+
+Pesquisar um picklist especifico
+>select id_reg, num_picklist, data_hora, nome_estoque
+>from esqtoque, mapa
+>where num_picklist = "BUSCA"
+>and mapa.id_estoque = estoque.id_estoque
+

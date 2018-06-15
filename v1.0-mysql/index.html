@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="ControlApp">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ titulo }}</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <script src="js/jquery.min.3.2.1.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/control-app.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="">
+                <h2 class="titulo-h2">Controle de Saída de Picklists</h2>
+            </div>
+
+            <div class="conatiner-fluid">
+                
+                <div role="navigation">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#registra" data-toggle="tab">Registrar</a></li>
+                        <li role="presentation"><a href="#consulta" data-toggle="tab">Consultar</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+
+                    <!-- CONTROLLER DE REGISTRO -->
+                    <div role="tabpanel" class="tab-pane active" id="registra" ng-controller="RegistraCtrl">
+                        <div class="panel">
+                            <div class="border">
+                                <div class="panel-heading">
+                                    <h4>Registrar Picklist</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+
+                                            <form class="form">
+                                                <div class="form-group input-group-lg">
+                                                    <label for="picklist">Num.Picklist:</label>
+                                                    <input type="text" class="form-control" ng-model="picklist" placeholder="Num. Picklist" ng-keydown="$event.keyCode === 13 && postData()" autofocus/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="dateFrom">Data:</label>
+                                                    <input type="text" class="form-control" ng-model="datahora" placeholder="{{ datahora | date : 'dd-MMM-yyyy HH:mm:ss' : 'Z' }}"  disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="dateFrom" class="control-label">Estoque:</label>
+                                                    <input type="text" class="form-control" ng-model="estoque" placeholder="Estoque"  disabled>
+                                                </div>                                                
+                                            </form>
+
+                                            <!-- Alerta de resultado de postagem -->
+                                            <div class="alert alert-danger" role="alert" ng-show="erro">
+                                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>  Ops! Desculpe, mas algum erro ocorreu! Picklist NÃO inserido!
+                                            </div>
+                                            <div class="alert alert-success" role="alert" ng-show="ok">
+                                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>  Picklist inserido com sucesso! \o/
+                                            </div>                                                                                    
+                                        </div>
+                                    </div>
+                                        
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONTROLLER DE CONSULTA -->
+                    <div role="tabpanel" class="tab-pane" id="consulta" ng-controller="ConsultaCtrl">
+                                               
+                        <div class="panel">
+                            <div class="border">
+                                <div class="panel-heading">
+                                    <h4>Consulta de Picklists</h4>                                        
+                                </div>                             
+                                <div class="panel-body">
+                                    <p>
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <label for="pkl">Num.Picklist</label>
+                                                <input type="text" class="form-control" ng-model="pkl" name="pkl" id="pkl" placeholder="Num. Picklist" autofocus/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dateFrom">De:</label>
+                                                <input type="date" class="form-control" ng-model="dateFrom" name="dateFrom" id="dateFrom" placeholder="Data Inicial">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dateTo">Até:</label>
+                                                <input type="date" class="form-control" ng-model="dateTo" name="dateTo" id="dateTo" placeholder="Data Final">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" ng-click="buscaMapa()" class="btn btn-primary">
+                                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Buscar
+                                                </button>
+                                            </div>
+                                            <button type="button" class="btn btn-default pull-right" ng-click="limparCampos()">
+                                                <span class="glyphicon glyphicon-trash"></span> Limpar Campos
+                                            </button>                                             
+                                        </form>
+                                    </p>
+                                    <!-- Alerta de nenhum resultado encontrado -->
+                                    <div class="alert alert-danger show-hide" role="alert" ng-show="erroBusca">
+                                        <span class="sr-only">Ops!</span>
+                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Nenhum resultado encontrado!
+                                    </div>                                  
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table" ng-show="lista.length > 0">
+                                        <tr><th>Encontrados {{count}} registros</th></tr>
+                                        <tr class="bg-info">
+                                            <th>Id Reg. #</th>
+                                            <th>PickList #</th>
+                                            <th>Data/Hora</th>
+                                            <th>Estoque</th>
+                                        </tr>
+                                        <tr ng-repeat="item in lista">
+                                            <td>{{ item.id_registro }}</td>
+                                            <td>{{ item.num_picklist }}</td>
+                                            <td>{{ item.data_hora | date : 'dd-MMM-YYYY HH:mm:ss' }}</td>
+                                            <td>{{ item.nome_estoque }}</td>
+                                        </tr>
+                                    </table>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+        </div>
+
+
+    </body>
+</html>

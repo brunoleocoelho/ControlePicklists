@@ -1,0 +1,44 @@
+<?php
+header('Content-type: text/html; charset=utf-8');
+    // class MapaDB
+    // {
+    //     function __construct() {
+    //         $this->conectaMsSql();
+    //     }
+    // }
+    
+    $serverName = "DESKTOP-ID93K1K\SQLEXPRESS";  //(local), OU DESKTOP-ID93K1K\SQLEXPRESS
+    $db = "controle_picklists";  
+    $user = "";
+    $pw = "";
+
+    //USANDO SQLSRV
+        $connectionInfo = array("Database" => $db); // "UID" => $user, "PWD" => $pw
+        $conn = sqlsrv_connect( $serverName, $connectionInfo);
+
+        if( $conn ) {
+            echo "Connection established.\n";
+        } else {
+            echo "Connection could not be established.\n";
+            die( print_r( sqlsrv_errors(), true));
+        }
+
+        sqlsrv_close( $conn);
+
+    //USANDO PDO       
+        // try {  
+        //     $conn = new PDO( "sqlsrv:Server=$serverName;Database=$db", NULL, NULL);   
+        //     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
+        //     echo "Conectado!";
+        //  }           
+        //  catch( PDOException $e ) {  
+        //     die( "Error connecting to SQL Server <br>". $e->getMessage() );  
+        //  }  
+                 
+
+    // }    
+    
+    
+
+
+?>

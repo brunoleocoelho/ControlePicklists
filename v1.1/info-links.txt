@@ -1,0 +1,10 @@
+﻿LINKS DE ACESSO 
+
+#Controle Picklists
+    http://G2C1ZVC2E/controle-picklists
+
+#Web Server FTP
+    file://g2c1zvc2e/htdocs/
+
+PC portão
+    http://10.81.93.159:50/

@@ -1,0 +1,26 @@
+body{
+    /* font-family: 'GE Inspira', sans-serif; */
+    padding-top: 100px;  
+    padding-bottom: 70px;   
+    background-color: rgb(250, 250, 250)!important;
+}
+
+.border{
+    box-shadow: 3px 10px 50px #ccccdd;
+}
+
+.titulo-h2{
+    font-weight: bold;
+}
+
+.modal {
+    display: block; 
+}
+
+.footer-div {
+    position: relative;
+    padding: 45px 15px 15px;
+/* a {
+    cursor: pointer;
+} */
+/**/
